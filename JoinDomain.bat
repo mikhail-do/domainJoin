@@ -1,6 +1,6 @@
 @echo off
 
-:: Проверка, запущен ли скрипт от имени администратора
+:: Checking if the script is running as administrator
 net session >nul 2>&1
 if %errorlevel% neq 0 (
     echo.
@@ -10,8 +10,8 @@ if %errorlevel% neq 0 (
     exit /b
 )
 
-:: Установка политики выполнения скриптов
+:: Setting the Script Execution Policy
 powershell -Command "Set-ExecutionPolicy RemoteSigned -Scope Process -Force"
 
-:: Запуск скрипта
+:: Running the script
 powershell -ExecutionPolicy Bypass -File "%~dp0configScript.ps1"
