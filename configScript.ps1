@@ -19,7 +19,7 @@ $securePassword = ConvertTo-SecureString $userPassword -AsPlainText -Force
 # Creating a credential object
 $credential = New-Object System.Management.Automation.PSCredential($userName, $securePassword)
 
-# Requesting new computer name (Must be entered in PC-*Inverter number* format)
+# Requesting new computer name (Asked to be entered in PC-*Inverter number* format)
 Write-Host ""
 $newComputerName = Read-Host -Prompt "Enter the computer name in the format PC-*Inventory num*"
 
