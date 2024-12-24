@@ -1,1 +1,2 @@
-.env.credentials
+# Ignore file with credentials
+config.json

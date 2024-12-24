@@ -1,18 +1,11 @@
+# Loading and parsing a JSON file
+$config = Get-Content -Path "$PSScriptRoot\config.json" | ConvertFrom-Json
 
-# Loading variables from .env.credentials
-$envFile = Get-Content -Path ".env.credentials"
-
-foreach ($line in $envFile) {
-    if ($line -match "^(.*?)=(.*)$") {
-        [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2])
-    }
-}
-
-# Variables for connecting to a domain
-$domainName = [System.Environment]::GetEnvironmentVariable('USERNAME')
-$userName = [System.Environment]::GetEnvironmentVariable('USERNAME')
-$userPassword = [System.Environment]::GetEnvironmentVariable('PASSWORD')
-$dnsServerAddresses = [System.Environment]::GetEnvironmentVariable('API_KEY')
+# Reading variables
+$domainName = $config.DOMAIN_NAME
+$userName = $config.USER_NAME
+$userPassword = $config.USER_PASSWORD
+$dnsServerAddresses = $config.DNS_ADDRESSES
 
 # Get the name of the network adapter starting with "Ethernet"
 $netAdapterName = (Get-NetAdapter | Where-Object { $_.Name -like "Ethernet*" } | Select-Object -First 1).Name 
@@ -50,5 +43,3 @@ Write-Host "`n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Write-Host ""
 Read-Host -Prompt "Press *Enter* to restart the computer."
 Restart-Computer
-
-
