@@ -6,6 +6,7 @@ $domainName = $config.DOMAIN_NAME
 $userName = $config.USER_NAME
 $userPassword = $config.USER_PASSWORD
 $dnsServerAddresses = $config.DNS_ADDRESSES
+$recommendedFormat = $config.RECOM_FORMAT
 
 # Get the name of the network adapter starting with "Ethernet"
 $netAdapterName = (Get-NetAdapter | Where-Object { $_.Name -like "Ethernet*" } | Select-Object -First 1).Name 
@@ -21,7 +22,7 @@ $credential = New-Object System.Management.Automation.PSCredential($userName, $s
 
 # Requesting new computer name (Asked to be entered in PC-*Inverter number* format)
 Write-Host ""
-$newComputerName = Read-Host -Prompt "Enter the computer name in the format PC-*Inventory num*"
+$newComputerName = Read-Host -Prompt "Enter the computer name $recommendedFormat"
 
 # Changing computer name without immediate reboot
 Rename-Computer -NewName $newComputerName -Force

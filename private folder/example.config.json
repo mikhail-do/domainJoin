@@ -2,5 +2,6 @@
     "DOMAIN_NAME": "corp.domain.internal",  
     "USER_NAME": "join@corp.domain.internal",   
     "USER_PASSWORD": "$ecureP@ssw0rd!",  
-    "DNS_ADDRESSES": "10.1.1.1, 10.1.2.1"
+    "DNS_ADDRESSES": "10.1.1.1, 10.1.2.1",
+    "RECOM_FORMAT": "in the format PC-*Inventory num*"
 }

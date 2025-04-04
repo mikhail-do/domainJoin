@@ -1,5 +1,8 @@
 @echo off
 
+:: set targetScript path
+set "targetScript=\\X.X.X.X\YYY\configScript.ps1"
+
 :: Checking if the script is running as administrator
 net session >nul 2>&1
 if %errorlevel% neq 0 (
@@ -14,4 +17,4 @@ if %errorlevel% neq 0 (
 powershell -Command "Set-ExecutionPolicy RemoteSigned -Scope Process -Force"
 
 :: Running the script
-powershell -ExecutionPolicy Bypass -File "%~dp0configScript.ps1"
+powershell -ExecutionPolicy Bypass -File "%~dp0AuthLayer.ps1" "%targetScript%"
